@@ -227,8 +227,9 @@ Streamlit을 사용해 서비스를 구현 했습니다. 청소년이 챗봇 상
 
 
 > - **기분에 맞는 에센셜 오일을 추천 해 주는 시스템입니다.**         
-> [![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://youtube.com/shorts/j20XOfTSWts?feature=share)  
+> [![Video Label](http://user-images.githubusercontent.com/97740175/173854027-c6b7b23e-5e0c-4fca-b4d0-30e392d59b10.png)](https://youtu.be/j20XOfTSWts)  
 
+</br>
 
 > - **사전 문진 챗봇입니다.**  
 > <img src="https://user-images.githubusercontent.com/97740175/173849048-652017f7-5178-4b52-9ed8-96975c34640a.png" width="60%" height="60%"></img>   
@@ -236,9 +237,8 @@ Streamlit을 사용해 서비스를 구현 했습니다. 청소년이 챗봇 상
 > 종합병원에서 앱으로 사전 문진을 한다고 가정하고 서비스를 구상했을때, 증상을 말하면 진료에 필요한 정보들을 식별해서 기록하고 분류한 다음 해당 과에 환자를 배정(환자입장에서는 예약)하는 것으로 마무리 되는 흐름으로 구성해보았습니다.   
 
 
-
-
 </br>
+
 
 
 
