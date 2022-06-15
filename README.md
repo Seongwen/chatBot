@@ -51,7 +51,49 @@ python, koGPT-2, klueBERT, streamlit
 ### 데이터 분석
 
 
+
 ### 모델
+#### 사용모델
+> **GPT모델**    
+> <img src="https://user-images.githubusercontent.com/97740175/173801316-e5273ee5-f34c-437c-b6e7-a6dbdbb00ff4.png" width="40%" height="40%"></img>   
+> - 디코더를 활용하여 순차적 단어를 생성하는 모델입니다.
+> - 챗봇의 다양한 대답 생성을 위해 사용하였습니다.
+>
+>##### KoGPT2 (skt/kogpt2-base-v2)
+>skt/kogpt2-base-v2모델을 pretrained하여 사용하였습니다.   
+>데이터를 Q(사용자의말)와 A(대답)형태로 하여, 훈련시켜 들어온 문장 뒤에 대답이 생성되도록 학습시켰습니다.     
+>이과정에서, 학습되는 기존의 감성대화 말뭉치는 너무 경직된 말투라 생각되어 학습 데이터 셋에 웰니스 대화 스크립트 추가로 말투 개선을 의도했습니다.   
+><img src="https://user-images.githubusercontent.com/97740175/173804067-fecef858-9b84-44f1-b299-dc182764de3d.png" width="42%" height="42%"></img>    
+>자연어 생성 모델이기에 정답이 없어 Accuracy측정은 못하였기에, 직접 검증을 후반에 했습니다.
+
+</br>
+
+
+> **BERT 모델**   
+> <img src="https://user-images.githubusercontent.com/97740175/173801334-9d14a710-84d6-4003-87c8-72bf2c5418f5.png" width="40%" height="40%"></img>   
+> - 인코더를 활용하여 양방향분석을 하는 모델입니다.
+> - 생성된 문장의 분류를 위해 사용하였습니다.
+>
+>##### KlueBERT (klue/bert-base)
+>klue/bert-base모델을 pretrained하여 사용하였습니다.   
+>데이터는 카테고리 분류가 된 감성대화 말뭉치만 사용하였습니다.
+>Q와, Q+A를 입력으로 하여 카테고리를 예측하는 형태로 모델을 훈련시켰습니다. y는 각 카테고리에 대한 85개의 스코어값입니다.    
+><img src="https://user-images.githubusercontent.com/97740175/173806997-99e07b47-8568-4129-a693-a62735f91001.png" width="60%" height="60%"></img>    
+>들어온 X(문장)을 6개 카테고리(하위 총 85개)로 분류, y와의 유사도를 통해 스코어를 계산합니다.    
+>각 6개 카테고리에대한 Accuracy :    
+><img src="https://user-images.githubusercontent.com/97740175/173806542-5830d553-7fa0-41ac-aa49-004f8f5badeb.png" width="70%" height="70%"></img> 
+
+
+#### 모델 구조도
+<img src="https://user-images.githubusercontent.com/97740175/173807655-c28376da-436f-40a0-aac8-299935ce82da.png" width="70%" height="70%"></img>    
+1. 입력된 user text에 문장구분을 위한 토큰\<user>,\<sys>을 붙여 GPT-2 모델로 문장을 생성합니다. \<user>은 문장의 시작을, \<sys>끝을 표시하고 gpt모델은 \<sys>에 이어지는 문장을 생성합니다.
+2. GPT-2모델에서 10개의 문장을 랜덤으로 생성합니다
+3. 생성된 10개의 문장은 BERT모델로 라벨에 대한 각각 스코어 점수를 갖습니다.
+4. 10문장에 대한 10개의 스코어 점수에 유사도 측정으로 가장 높은 점수를 받은 문장을 선택하여 후처리 후, 출력합니다.
+
+#### 모듈 구조도
+#### 모델 성능비교
+
 
 
 ### 쳇봇시연
